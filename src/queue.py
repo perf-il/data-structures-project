@@ -20,7 +20,6 @@ class Queue:
         self.tail: Node | None = None
         self.size: int = 0
 
-
     def enqueue(self, data):
         """
         Метод для добавления элемента в очередь
@@ -30,16 +29,22 @@ class Queue:
         if self.head is None:
             self.head = self.tail = Node(data)
         else:
-            self.tail.next_node = Node(data)
-            self.tail = Node(data)
+            node = Node(data)
+            self.tail.next_node = node
+            self.tail = node
         self.size += 1
+
     def dequeue(self):
         """
         Метод для удаления элемента из очереди. Возвращает данные удаленного элемента
 
         :return: данные удаленного элемента
         """
-        pass
+        node = self.head
+        if self.size > 0:
+            self.head = node.next_node
+            self.size -= 1
+            return node.data
 
     def __str__(self):
         """Магический метод для строкового представления объекта"""
@@ -50,5 +55,5 @@ class Queue:
         while node is not None:
             deque_list.append(node.data)
             node = node.next_node
-        deque_list.append(self.tail.data)
         return '\n'.join(deque_list)
+
