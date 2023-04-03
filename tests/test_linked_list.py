@@ -27,6 +27,18 @@ class TestLinkedList(unittest.TestCase):
     def test_str(self):
         self.assertEqual(str(self.ll), "{'id': 0} -> {'id': 1} -> {'id': 2} -> {'id': 3} -> None")
 
+    def test_to_list(self):
+        self.assertEqual(self.ll.to_list(), [{'id': 0}, {'id': 1}, {'id': 2}, {'id': 3}])
+
+    def test_get_data_by_id(self):
+        self.assertEqual(self.ll.get_data_by_id(0), {'id': 0})
+        self.assertEqual(self.ll.get_data_by_id(1), {'id': 1})
+        self.assertEqual(self.ll.get_data_by_id(2), {'id': 2})
+        self.assertEqual(self.ll.get_data_by_id(3), {'id': 3})
+        self.assertEqual(self.ll.get_data_by_id(13), None)
+        self.assertEqual(self.ll.get_data_by_id('ghjgj'), None)
+        self.assertEqual(self.ll.get_data_by_id([1, 2, 3]), None)
+
 
 if __name__ == '__main__':
     unittest.main()
